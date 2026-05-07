@@ -1,93 +1,74 @@
 # HR Document ChatBot Assistant
 
-## Create a virtual env and install dependency from requirements.txt
+A Streamlit-based HR Policy chatbot that uses a RAG (Retrieval-Augmented Generation) pipeline to answer questions about uploaded HR policy documents.
 
-A Python virtual environment is an isolated folder structure that holds a specific Python interpreter and its own set of libraries/packages. It ensures project-specific dependencies do not interfere with other projects or the global system installation, allowing different projects to use different versions of the same library without conflicts.
+## Features
 
-Key Functions of a Virtual Environment:Isolation: 
+- Upload HR policy PDFs
+- Automatic document chunking and embedding via OpenAI
+- Vector storage with ChromaDB for fast retrieval
+- Context-aware answers grounded in the uploaded documents
 
-Creates a "bubble" for each project, keeping dependencies contained and separate.Conflict Prevention: Prevents package version conflicts (e.g., Project A needing Django 3.0 while Project B needs Django 4.0).
+## Prerequisites
 
-Version Management: Allows different projects to use different versions of Python or libraries.
+- Python 3.11+
+- An [OpenAI API key](https://platform.openai.com/api-keys)
 
-Cleaner System: Avoids cluttering the global Python installation with unnecessary packages.
+## Setup
 
-Reproducibility: Makes it easy to share projects by creating a list of dependencies (requirements.txt) specifically for that environment.
+1. **Create and activate a virtual environment:**
 
-## create a virtaul env
-```bash
-python -m venv venv
-```
+   ```bash
+   python -m venv venv
 
-## activate virtual env
-```bash
-venv\Scripts\activate.bat
-```
+   # macOS / Linux
+   source venv/bin/activate
 
-## PowerShell
-```bash
-\.venv\Scripts\Activate.ps1
-```
+   # Windows (PowerShell)
+   .\venv\Scripts\Activate.ps1
 
-## WindowsCommand Prompt.
-```bash
-\.venv\Scripts\activate.bat
-```
+   # Windows (Command Prompt)
+   venv\Scripts\activate.bat
+   ```
 
-## macOS/Linuxbash / zshsource 
-```bash
-.venv/bin/activate
-```
+2. **Install dependencies:**
 
-# deactivate
-```bash
-venv\Scripts\deactivate.bat
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-# Install Dependency while virtual env activated
-```bash
-pip install -r requirements.txt
-```
+3. **Configure your API key:**
 
-# Build the source code
+   Create a `.env` file in the project root:
 
-# Build Application file
+   ```
+   OPENAI_API_KEY=sk-your-key-here
+   ```
 
-## Run application
+## Usage
+
 ```bash
 streamlit run app.py
 ```
 
-# Stop streamlit app
-```bash
-ctrl+c
+Open the URL shown in your terminal (default: http://localhost:8501), upload an HR policy PDF, click **Ingest/Process Document**, then ask questions.
+
+To stop the app, press `Ctrl+C` in the terminal.
+
+## Project Structure
+
 ```
-
-
-# Updates gitignore file then push code to github
-
-# track file
-```bash
-git add .
-```
-
-# to see tracked all files
-```bash
-git status
-```
-# commits the changes to stagging area
-```bash
-git commit -m "Add initial project structure and implement HR Document ChatBotCreated .gitignore to exclude environment files and cache directories. Added README.md with setup instructions and usage guidelines for the HR Document ChatBot.Implemented main application logic in app.py for document upload and question answering.Created document loaders and chunking functions to handle PDF files.
-Integrated OpenAI embeddings and LLM for question answering.
-Established vector store for document retrieval.
-Added prompt template for structured responses.
-Included sample HR policy document for testing.
-Set up requirements.txt for project dependencies.
-Created initial configuration files and directories."
-```
-
-# git push to remote repo
-
-```bash
-git push origin main
+app.py                  # Streamlit UI entry point
+src/
+  document_loaders.py   # PDF loading via PyMuPDF
+  chunking.py           # Recursive text splitting
+  embeddings.py         # OpenAI embedding model
+  vectorstore.py        # ChromaDB vector store
+  llm_integration.py    # ChatOpenAI LLM wrapper
+  rag_pipeline.py       # Indexing and QA orchestration
+prompts/
+  prompt_template.py    # System/user prompt builder
+config/
+  config.yaml           # Centralised configuration values
+data/sample_pdfs/       # Uploaded PDFs stored here
 ```

@@ -1,9 +1,10 @@
 from langchain_openai import OpenAIEmbeddings
-from dotenv import load_dotenv
-import os   
 
-load_dotenv()
 
-def get_embedding_model():
-    embeddings = OpenAIEmbeddings(model="text-embedding-3-small",openai_api_key=os.getenv("OPENAI_API_KEY"))
-    return embeddings
+def get_embedding_model() -> OpenAIEmbeddings:
+    """Return an OpenAI embedding model instance.
+
+    The API key is read automatically from the OPENAI_API_KEY
+    environment variable by the LangChain client.
+    """
+    return OpenAIEmbeddings(model="text-embedding-3-small")
