@@ -5,6 +5,9 @@ from src.vectorstore import create_vector_store, load_vector_store, get_retrieve
 from src.llm_integration import get_llm_model
 from prompts.prompt_template import build_prompt
 
+from dotenv import load_dotenv
+import os   
+load_dotenv()
 
 def indexing_pipeline(file_path):
     # 1.Load documents
