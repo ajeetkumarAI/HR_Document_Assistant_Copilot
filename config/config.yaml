@@ -1,0 +1,19 @@
+# HR Document Assistant Configuration
+
+llm:
+  model_name: gpt-4o-mini
+  temperature: 0
+
+embeddings:
+  model: text-embedding-3-small
+
+chunking:
+  chunk_size: 1000
+  chunk_overlap: 300
+
+retriever:
+  search_type: mmr
+  k: 6
+
+vector_store:
+  persist_directory: db

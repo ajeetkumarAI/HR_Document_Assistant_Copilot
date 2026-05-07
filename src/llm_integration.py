@@ -1,9 +1,11 @@
 from langchain_openai import ChatOpenAI
-from dotenv import load_dotenv
-import os   
-load_dotenv()
 
-def get_llm_model():
-    llm = ChatOpenAI(model_name="gpt-5.4-nano-2026-03-17", temperature=0,openai_api_key=os.getenv("OPENAI_API_KEY"))
-    return llm
+
+def get_llm_model() -> ChatOpenAI:
+    """Return a ChatOpenAI LLM instance.
+
+    The API key is read automatically from the OPENAI_API_KEY
+    environment variable by the LangChain client.
+    """
+    return ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
 
