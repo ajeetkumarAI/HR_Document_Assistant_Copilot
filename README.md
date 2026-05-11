@@ -51,6 +51,10 @@ A Streamlit-based HR Policy chatbot that uses a RAG (Retrieval-Augmented Generat
 streamlit run app.py
 ```
 
+```bash
+streamlit run app.py --server.port=8000 --server.address=0.0.0.0
+```
+
 Open the URL shown in your terminal (default: http://localhost:8501), upload an HR policy PDF, click **Ingest/Process Document**, then ask questions.
 
 To stop the app, press `Ctrl+C` in the terminal.
