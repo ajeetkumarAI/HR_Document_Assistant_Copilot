@@ -7,5 +7,5 @@ def get_llm_model() -> ChatOpenAI:
     The API key is read automatically from the OPENAI_API_KEY
     environment variable by the LangChain client.
     """
-    return ChatOpenAI(model_name="gpt-4o-mini", temperature=0)
+    return ChatOpenAI(model_name="gpt-5.4-2026-03-05", temperature=0)
 
